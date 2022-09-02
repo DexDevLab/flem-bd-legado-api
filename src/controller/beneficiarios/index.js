@@ -1,4 +1,3 @@
-import { maskCPF } from "utils/masks";
 import { prisma } from "services/prisma";
 
 /**

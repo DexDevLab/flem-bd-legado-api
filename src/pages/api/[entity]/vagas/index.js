@@ -1,4 +1,3 @@
-import { getSituacoes, getSituacoesByFilter } from "controller/situacoes";
 import { getVagas, getVagasByFilter } from "controller/vagas";
 import { allowCors } from "services/apiAllowCors";
 import { parseArrayToInteger, parseArrayToString } from "utils/parsers";
@@ -70,25 +69,31 @@ async function handler(req, res) {
         } catch (error) {
           // SE UM CRITÉRIO FOR INCLUÍDO MAS NÃO A CONDIÇÃO DE PESQUISA, RETORNA ERRO
           if (!condition) {
-            return res
-              .status(400)
-              .json({
-                status: 400,
-                message: "ERRO DE API - A chamada requer 'CONDITION'.",
-                error: error.message
-              });
+            return res.status(400).json({
+              status: 400,
+              message: "ERRO DE API - A chamada requer 'CONDITION'.",
+              error: error.message,
+            });
           }
           // SE A CONSULTA RESULTOU EM ERRO POR QUALQUER OUTRO MOTIVO
           return res
             .status(500)
-            .json({ status: 500, message: "QUERY ERROR", error: error.message});
+            .json({
+              status: 500,
+              message: "QUERY ERROR",
+              error: error.message,
+            });
         }
       }
     } catch (error) {
       // SE FOI INSERIDA A CONDIÇÃO, MAS ELA ESTAVA INCORRETA, OU OS CRITÉRIOS DE PESQUISA NÃO BATEM
       return res
         .status(405)
-        .json({ status: 405, message: "METHOD NOT ALLOWED", error: error.message });
+        .json({
+          status: 405,
+          message: "METHOD NOT ALLOWED",
+          error: error.message,
+        });
     }
   } else {
     // SE FOI FEITO OUTRO MÉTODO ALÉM DE GET
