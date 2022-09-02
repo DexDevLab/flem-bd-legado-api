@@ -1,0 +1,1713 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Acao {
+  id_acao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  data DateTime [not null]
+  descricao String
+  id_egresso Int
+  id_tipoDeAcao Int [not null]
+  version Int [not null]
+  Egresso Egresso
+  TipoDeAcao TipoDeAcao [not null]
+  EnvioDeEmail EnvioDeEmail [not null]
+}
+
+Table Acao_AUD {
+  id_acao Int [not null]
+  REV Int [not null]
+  REVTYPE Int
+  data DateTime
+  descricao String
+  id_tipoDeAcao Int
+  VersaoDosDados VersaoDosDados [not null]
+
+  indexes {
+    (id_acao, REV) [pk]
+  }
+}
+
+Table agendamentos {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  data_final DateTime
+  data_inicial DateTime
+  data_registro DateTime
+  observacao String
+  status String
+  id_beneficiario Int [not null]
+  id_periodo Int [not null]
+  Egresso Egresso [not null]
+  periodos periodos [not null]
+  registro_monitoramento registro_monitoramento [not null]
+}
+
+Table agendamentos_aud {
+  id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  data_final DateTime
+  data_inicial DateTime
+  data_registro DateTime
+  observacao String
+  status String
+  id_beneficiario Int
+  id_periodo Int
+  revinfo revinfo [not null]
+
+  indexes {
+    (id, rev) [pk]
+  }
+}
+
+Table AssistenciaSocial {
+  id_assitenciasocial Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  data DateTime [not null]
+  descricao String
+  id_egresso Int
+  id_tipoAssistenciaSocial Int [not null]
+  version Int [not null]
+  Egresso Egresso
+  TipoAssistenciaSocial TipoAssistenciaSocial [not null]
+}
+
+Table AssistenciaSocial_AUD {
+  id_assitenciasocial Int [not null]
+  REV Int [not null]
+  REVTYPE Int
+  data DateTime
+  descricao String
+  id_tipoAssistenciaSocial Int
+  VersaoDosDados VersaoDosDados [not null]
+
+  indexes {
+    (id_assitenciasocial, REV) [pk]
+  }
+}
+
+Table avaliacao_monitoramento {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  ativo Boolean
+  descricao String
+  nome String [not null]
+  excluido Boolean
+  avaliacao_questionario avaliacao_questionario [not null]
+}
+
+Table avaliacao_questionario {
+  dataalteracao DateTime
+  datacriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  file_path String
+  id_avaliacao Int [not null]
+  id_questionario Int [not null]
+  excluido Boolean
+  avaliacao_monitoramento avaliacao_monitoramento [not null]
+  questionarios questionarios [not null]
+
+  indexes {
+    (id_avaliacao, id_questionario) [pk]
+  }
+}
+
+Table Campanha {
+  id_campanha Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  assunto String [not null]
+  mensagem String [not null]
+  status Int
+  id_contadeemail Int
+  id_modeloDeOficio Int
+  version Int [not null]
+  ContaDeEmail ContaDeEmail
+  ModeloDeOficio ModeloDeOficio
+  EnvioDeEmail EnvioDeEmail [not null]
+}
+
+Table CategoriaDaSituacao {
+  id_categoriaDaSituacao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String [not null]
+  cor String
+  version Int [not null]
+  Situacao Situacao [not null]
+}
+
+Table CI {
+  fechada Boolean
+  numero Int [not null]
+  id_documento Int [pk]
+  ano Int [not null]
+  assunto String
+  id_egresso Int
+  Documento Documento [not null]
+  Egresso Egresso
+}
+
+Table Colaborador {
+  id_colaborador Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  ativo Boolean
+  cargo String [not null]
+  celular Int
+  email String
+  nome String [not null]
+  telefone Int
+  ID_ESC_REGIONAL Int
+  version Int [not null]
+  EscritorioRegional EscritorioRegional
+  Demandante Demandante [not null]
+  MonitorDemandante MonitorDemandante [not null]
+  registro_monitoramento_ColaboradorToregistro_monitoramento_id_monitor registro_monitoramento [not null]
+  registro_monitoramento_ColaboradorToregistro_monitoramento_id_monitor_associado registro_monitoramento [not null]
+  visita_beneficiario visita_beneficiario [not null]
+}
+
+Table comprovacao {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  content_type String
+  file_name String
+  file_path String
+  file_size Int
+  tipo_comprovacao String
+  excluido Boolean
+  registro_monitoramento registro_monitoramento [not null]
+}
+
+Table comprovacao_aud {
+  id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  content_type String
+  file_name String
+  file_path String
+  file_size Int
+  tipo_comprovacao String
+  revinfo revinfo [not null]
+
+  indexes {
+    (id, rev) [pk]
+  }
+}
+
+Table ContaDeEmail {
+  id_contaDeEmail Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  emailRemetente String
+  login String
+  nomeRemetente String
+  porta Int
+  principal Boolean [not null]
+  senha String
+  servidor String
+  version Int [not null]
+  Campanha Campanha [not null]
+}
+
+Table CoordenadorFocal {
+  id_coordenadorFocal Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  email String
+  nome String
+  telefone String
+  id_demandante Int [not null]
+  version Int [not null]
+  Demandante Demandante [not null]
+}
+
+Table Deficiencia {
+  id_deficiencia Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  version Int [not null]
+  Egresso Egresso [not null]
+}
+
+Table Demandante {
+  id_demandante Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  sigla String
+  demandante_cod_sistec String
+  data_alteracao DateTime
+  data_criacao DateTime
+  label String
+  id_colaborador Int
+  version Int [not null]
+  Colaborador Colaborador
+  CoordenadorFocal CoordenadorFocal [not null]
+  Instituicao Instituicao [not null]
+  MonitorDemandante MonitorDemandante [not null]
+  registro_monitoramento registro_monitoramento [not null]
+  RegraContratacao RegraContratacao [not null]
+  Vaga Vaga [not null]
+}
+
+Table DistanciaEntreMunicipios {
+  id_distanciaEntreMunicipios Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  distancia Int
+  id_municipioDestino Int
+  id_municipioOrigem Int
+  version Int [not null]
+  Municipio_DistanciaEntreMunicipios_id_municipioDestinoToMunicipio Municipio
+  Municipio_DistanciaEntreMunicipios_id_municipioOrigemToMunicipio Municipio
+
+  indexes {
+    (id_municipioDestino, id_municipioOrigem) [unique]
+  }
+}
+
+Table Documento {
+  id_documento Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  arquivo Bytes
+  nome String
+  tipo String
+  version Int [not null]
+  filePath String
+  fileLenght Int
+  CI CI
+  DocumentoDoEgresso DocumentoDoEgresso
+  ModeloDeOficio ModeloDeOficio
+  Oficio Oficio
+}
+
+Table DocumentoDoEgresso {
+  id_documento Int [pk]
+  id_egresso Int [not null]
+  sigiloso Boolean
+  Documento Documento [not null]
+  Egresso Egresso [not null]
+}
+
+Table Egresso {
+  id_egresso Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  anamnese String
+  bairro String
+  celular String
+  cep String
+  complemento String
+  contato String
+  cpf String [not null]
+  dataNascimento DateTime
+  dataSeminarioAcolhimento String
+  dddCelular String
+  dddContato String
+  dddTelefone1 String
+  dddTelefone2 String
+  emailParticular String
+  endereco String
+  formacao String
+  localSeminarioAcolhimento String
+  matriculaFlem String
+  matriculaSAEB String
+  modalidadeSeminarioAcolhimento String
+  municipiosSeminarioAcolhimento String
+  nome String [not null]
+  nomeSeminarioAcolhimento String
+  numero String
+  observacao String
+  rg String
+  sexo String
+  telefone1 String
+  telefone2 String
+  uf String
+  id_pontoFocal Int
+  dataEventoLancamentoPE String
+  fardamentoRecebido DateTime
+  localEventoLancamentoPE String
+  modalidadeEventoLancamentoPE String
+  nomeEventoLancamentoPE String
+  id_municipio Int [not null]
+  id_municipioEscola Int
+  aso Boolean
+  valeAlimentacao String
+  valeTransporte String
+  tamanhoDeCamisa String
+  id_formacao Int
+  id_deficiencia Int
+  emailSecundario String
+  racaCor Int
+  relocacaoDeVagaAtendida Boolean
+  relocacaoDeVagaEncaminhada Boolean
+  asoPendente Boolean
+  cartaCidadaoPendente Boolean
+  cartaoVacinaPendente Boolean
+  carteiraAssinada Boolean
+  certidaoCasamentoPendente Boolean
+  certidaoNascimentoPendente Boolean
+  comprovanteEscolaridadePendente Boolean
+  comprovanteVotacaoPendente Boolean
+  comprovanteresidenciaPendente Boolean
+  contratoTrabalhoFlem Boolean
+  cpfPendente Boolean
+  ctpsPendente Boolean
+  curriculoPendente Boolean
+  dadosbancariosPendente Boolean
+  diplomaPendente Boolean
+  estagioConcluido Boolean
+  foto3x4Pendente Boolean
+  reservistaPendente Boolean
+  rgPendente Boolean
+  tituloEleitorPendente Boolean
+  escolaconclusao String
+  cracha Boolean
+  ctps String
+  fichaAdmissao Boolean
+  pis String
+  plano_Saude Boolean
+  vale_Alimentacao Boolean
+  vale_Transporte Boolean
+  data_nascimento DateTime
+  ddd_celular String
+  ddd_contato String
+  ddd_telefone1 String
+  ddd_telefone2 String
+  email_particular String
+  email_secundario String
+  fardamento_recebido DateTime
+  matricula_flem String
+  relocacao_de_vaga_atendida Boolean
+  relocacao_de_vaga_encaminhada Boolean
+  tamanho_de_camisa String
+  avaInformacao String
+  anoMatricula String
+  dataRespostaSemestre DateTime
+  modalidadeGraduacao String
+  nomeCursoGraduacao String
+  nomeInstituicaoSuperior String
+  rendaPPEAjuda Boolean
+  semestre String
+  tipoInstituicaoSuperior String
+  anoConclusaoCurso String
+  dataAdmissao DateTime
+  nomeCursoTecnico String
+  nomeInstituicaoTecnico String
+  tipoInstituicaoTecnica String
+  cursoSuperior String
+  cursoSuperiorConcluido String
+  cursoTecnicoProfissionalizante String
+  pretendeFazerCursoSuperior String
+  version Int [not null]
+  Deficiencia Deficiencia
+  Formacao Formacao
+  Municipio_Egresso_id_municipioToMunicipio Municipio [not null]
+  Municipio_Egresso_id_municipioEscolaToMunicipio Municipio
+  PontoFocal PontoFocal
+  Acao Acao [not null]
+  agendamentos agendamentos [not null]
+  AssistenciaSocial AssistenciaSocial [not null]
+  CI CI [not null]
+  DocumentoDoEgresso DocumentoDoEgresso [not null]
+  EgressoLista EgressoLista [not null]
+  EnvioDeEmail EnvioDeEmail [not null]
+  MaterialEgresso MaterialEgresso [not null]
+  monitoramento monitoramento [not null]
+  Oficio Oficio [not null]
+  registro_monitoramento registro_monitoramento [not null]
+  Telefone Telefone [not null]
+  Vaga Vaga [not null]
+  visita_beneficiario visita_beneficiario [not null]
+}
+
+Table Egresso_AUD {
+  id_egresso Int [not null]
+  REV Int [not null]
+  REVTYPE Int
+  anamnese String
+  bairro String
+  celular String
+  cep String
+  complemento String
+  contato String
+  cpf String
+  dataNascimento DateTime
+  dataSeminarioAcolhimento String
+  dddCelular String
+  dddContato String
+  dddTelefone1 String
+  dddTelefone2 String
+  emailParticular String
+  endereco String
+  formacao String
+  localSeminarioAcolhimento String
+  matriculaFlem String
+  matriculaSAEB String
+  modalidadeSeminarioAcolhimento String
+  municipiosSeminarioAcolhimento String
+  nome String
+  nomeSeminarioAcolhimento String
+  numero String
+  observacao String
+  rg String
+  sexo String
+  telefone1 String
+  telefone2 String
+  uf String
+  dataEventoLancamentoPE String
+  fardamentoRecebido DateTime
+  localEventoLancamentoPE String
+  modalidadeEventoLancamentoPE String
+  nomeEventoLancamentoPE String
+  id_municipio Int
+  id_municipioEscola Int
+  aso Boolean
+  valeAlimentacao String
+  valeTransporte String
+  tamanhoDeCamisa String
+  id_formacao Int
+  id_deficiencia Int
+  emailSecundario String
+  racaCor Int
+  relocacaoDeVagaAtendida Boolean
+  relocacaoDeVagaEncaminhada Boolean
+  asoPendente Boolean
+  cartaCidadaoPendente Boolean
+  cartaoVacinaPendente Boolean
+  carteiraAssinada Boolean
+  certidaoCasamentoPendente Boolean
+  certidaoNascimentoPendente Boolean
+  comprovanteEscolaridadePendente Boolean
+  comprovanteVotacaoPendente Boolean
+  comprovanteresidenciaPendente Boolean
+  contratoTrabalhoFlem Boolean
+  cpfPendente Boolean
+  ctpsPendente Boolean
+  curriculoPendente Boolean
+  dadosbancariosPendente Boolean
+  diplomaPendente Boolean
+  estagioConcluido Boolean
+  foto3x4Pendente Boolean
+  reservistaPendente Boolean
+  rgPendente Boolean
+  tituloEleitorPendente Boolean
+  escolaconclusao String
+  cracha Boolean
+  ctps String
+  fichaAdmissao Boolean
+  pis String
+  plano_Saude Boolean
+  vale_Alimentacao Boolean
+  vale_Transporte Boolean
+  avaInformacao String
+  anoMatricula String
+  dataRespostaSemestre DateTime
+  modalidadeGraduacao String
+  nomeCursoGraduacao String
+  nomeInstituicaoSuperior String
+  rendaPPEAjuda Boolean
+  semestre String
+  tipoInstituicaoSuperior String
+  anoConclusaoCurso String
+  dataAdmissao DateTime
+  nomeCursoTecnico String
+  nomeInstituicaoTecnico String
+  tipoInstituicaoTecnica String
+  cursoSuperior String
+  cursoSuperiorConcluido String
+  cursoTecnicoProfissionalizante String
+  pretendeFazerCursoSuperior String
+  VersaoDosDados VersaoDosDados [not null]
+
+  indexes {
+    (id_egresso, REV) [pk]
+  }
+}
+
+Table EgressoLista {
+  id_egressolista Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  feito Boolean
+  id_egresso Int
+  id_lista Int
+  lista Bytes
+  version Int [not null]
+  deAcordo Boolean
+  Egresso Egresso
+  Lista Lista
+}
+
+Table EixoDeFormacao {
+  id_eixoDeFormacao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  version Int [not null]
+  Formacao Formacao [not null]
+}
+
+Table EnvioDeEmail {
+  descricaoEnvio String
+  email String [not null]
+  status Int
+  id_campanha Int
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  acao_id_acao Int
+  egresso_id_egresso Int
+  id Int [pk, increment]
+  emailSecundario String
+  version Int [not null]
+  Acao Acao
+  Egresso Egresso
+  Campanha Campanha
+}
+
+Table EscritorioRegional {
+  id_esc_regional Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  ativo Boolean
+  bairro String
+  celular Int
+  cep Int
+  email String
+  logradouro String
+  nome String
+  telefone Int
+  ID_MUNICIPIO Int
+  data_alteracao DateTime
+  data_criacao DateTime
+  version Int [not null]
+  Municipio_EscritorioRegional_ID_MUNICIPIOToMunicipio Municipio
+  Colaborador Colaborador [not null]
+  Municipio_EscritorioRegionalToMunicipio_ID_ESC_REGIONAL Municipio [not null]
+}
+
+Table Evento {
+  id_evento Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  data DateTime
+  modalidade String
+  nome String
+  tipo String
+  id_localDoEvento Int
+  version Int [not null]
+  LocalDoEvento LocalDoEvento
+}
+
+Table Formacao {
+  id_formacao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  id_eixoDeFormacao Int [not null]
+  formacao_cod_sistec String
+  version Int [not null]
+  EixoDeFormacao EixoDeFormacao [not null]
+  Egresso Egresso [not null]
+  RegraContratacao RegraContratacao [not null]
+}
+
+Table Instituicao {
+  id_instituicao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  id_demandante Int [not null]
+  version Int [not null]
+  Demandante Demandante [not null]
+  UnidadeDeLotacao UnidadeDeLotacao [not null]
+}
+
+Table Lista {
+  id_lista Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  ativo Boolean
+  version Int [not null]
+  EgressoLista EgressoLista [not null]
+}
+
+Table LocalDoEvento {
+  id_localDoEvento Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  bairro String
+  cep String
+  logradouro String
+  nome String
+  numero String
+  id_municipio Int
+  version Int [not null]
+  Municipio Municipio
+  Evento Evento [not null]
+}
+
+Table Material {
+  id_material Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String [not null]
+  observacao String
+  version Int [not null]
+  MaterialEgresso MaterialEgresso [not null]
+}
+
+Table MaterialEgresso {
+  id Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  dataRecebimento DateTime
+  lote String [not null]
+  observacao String
+  quantidade Int [not null]
+  id_egresso Int
+  material_id_material Int [not null]
+  tamanho_id_tamanho Int [not null]
+  unidade_id Int [not null]
+  version Int [not null]
+  Egresso Egresso
+  Material Material [not null]
+  Tamanho Tamanho [not null]
+  UnidadeDeMedida UnidadeDeMedida [not null]
+}
+
+Table MaterialEgresso_AUD {
+  id Int [not null]
+  REV Int [not null]
+  REVTYPE Int
+  dataRecebimento DateTime
+  lote String
+  observacao String
+  quantidade Int
+  id_egresso Int
+  VersaoDosDados VersaoDosDados [not null]
+
+  indexes {
+    (id, REV) [pk]
+  }
+}
+
+Table metas {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String
+  nome String
+  tipo String
+  registro_monitoramento registro_monitoramento [not null]
+}
+
+Table metas_aud {
+  id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String
+  nome String
+  tipo String
+  revinfo revinfo [not null]
+
+  indexes {
+    (id, rev) [pk]
+  }
+}
+
+Table ModeloDeOficio {
+  status Int
+  id_documento Int [pk]
+  assunto String
+  dataGeracao DateTime
+  tipoModelo_id Int
+  Documento Documento [not null]
+  TipoModeloDeOficio TipoModeloDeOficio
+  Campanha Campanha [not null]
+  Oficio Oficio [not null]
+}
+
+Table monitoramento {
+  id Int [pk, increment]
+  datacriacao DateTime
+  data_monitoramento DateTime [not null]
+  observacao String
+  usuario_criacao String
+  id_beneficiario Int [not null]
+  Egresso Egresso [not null]
+}
+
+Table MonitorDemandante {
+  id Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  id_demandante Int
+  id_colaborador Int
+  id_municipio Int
+  id_vaga Int
+  version Int [not null]
+  excluido Boolean
+  Colaborador Colaborador
+  Demandante Demandante
+  Municipio Municipio
+  Vaga Vaga
+}
+
+Table Municipio {
+  id_municipio Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String [not null]
+  uf String [not null]
+  id_territorio Int
+  municipio_cod_ibge String
+  ID_ESC_REGIONAL Int
+  version Int [not null]
+  EscritorioRegional_EscritorioRegionalToMunicipio_ID_ESC_REGIONAL EscritorioRegional
+  Territorio Territorio
+  DistanciaEntreMunicipios_DistanciaEntreMunicipios_id_municipioDestinoToMunicipio DistanciaEntreMunicipios [not null]
+  DistanciaEntreMunicipios_DistanciaEntreMunicipios_id_municipioOrigemToMunicipio DistanciaEntreMunicipios [not null]
+  Egresso_Egresso_id_municipioToMunicipio Egresso [not null]
+  Egresso_Egresso_id_municipioEscolaToMunicipio Egresso [not null]
+  EscritorioRegional_EscritorioRegional_ID_MUNICIPIOToMunicipio EscritorioRegional [not null]
+  LocalDoEvento LocalDoEvento [not null]
+  MonitorDemandante MonitorDemandante [not null]
+  registro_monitoramento registro_monitoramento [not null]
+  RegraContratacao RegraContratacao [not null]
+  UnidadeDeLotacao UnidadeDeLotacao [not null]
+  Vaga_MunicipioToVaga_id_municipioDaVaga Vaga [not null]
+  Vaga_MunicipioToVaga_id_municipioUnidadeDeLotacao Vaga [not null]
+}
+
+Table Notificacao {
+  id_notificacao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  dataConcluido DateTime
+  dataLimite DateTime
+  mensagem String [not null]
+  urgente Boolean
+  usuarioNotificado Int [not null]
+  version Int [not null]
+}
+
+Table Oficio {
+  numero Int [not null]
+  id_documento Int [pk]
+  id_modelo Int
+  ano Int [not null]
+  assunto String
+  destinatarioExterno String
+  id_egresso Int
+  dataGeracao DateTime
+  data_geracao DateTime
+  Documento Documento [not null]
+  Egresso Egresso
+  ModeloDeOficio ModeloDeOficio
+}
+
+Table opcao_resposta {
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  resposta_id Int [not null]
+  pergunta_id Int [not null]
+  perguntas perguntas [not null]
+  respostas respostas [not null]
+
+  indexes {
+    (pergunta_id, resposta_id) [pk]
+  }
+}
+
+Table opcao_resposta_aud {
+  pergunta_id Int [not null]
+  resposta_id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  perguntas perguntas [not null]
+  respostas respostas [not null]
+  revinfo revinfo [not null]
+
+  indexes {
+    (pergunta_id, resposta_id, rev) [pk]
+  }
+}
+
+Table Parametro {
+  chave String [pk]
+  descricao String
+  valor String
+}
+
+Table parametros {
+  id String [pk]
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String
+  valor String
+}
+
+Table perguntas {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  obrigatoria Boolean [not null]
+  ordem Int [not null]
+  tipo_resposta String
+  descricao String
+  opcao_resposta opcao_resposta [not null]
+  opcao_resposta_aud opcao_resposta_aud [not null]
+  resposta_item resposta_item [not null]
+  resposta_item_aud resposta_item_aud [not null]
+}
+
+Table perguntas_aud {
+  id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String
+  obrigatoria Boolean
+  ordem Int
+  tipo_resposta String
+  revinfo revinfo [not null]
+
+  indexes {
+    (id, rev) [pk]
+  }
+}
+
+Table periodos {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String
+  dia_referencia Int
+  mes_fim Int
+  mes_inicio Int
+  nome String
+  ordem Int
+  tipo String
+  agendamentos agendamentos [not null]
+}
+
+Table periodos_aud {
+  id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String
+  dia_referencia Int
+  mes_fim Int
+  mes_inicio Int
+  nome String
+  ordem Int
+  tipo String
+  revinfo revinfo [not null]
+
+  indexes {
+    (id, rev) [pk]
+  }
+}
+
+Table PontoFocal {
+  id_pontoFocal Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  email String
+  nome String [not null]
+  telefone1 String
+  telefone2 String
+  telefone3 String
+  telefone4 String
+  telefone5 String
+  id_unidadeDeLotacao Int [not null]
+  version Int [not null]
+  UnidadeDeLotacao UnidadeDeLotacao [not null]
+  Egresso Egresso [not null]
+}
+
+Table questionarios {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  autonomia String
+  conhecimento String
+  descricao_desvio_de_funcao String
+  desvio_de_funcao String
+  experiencia_profissional String
+  habilidade String
+  motivacao String
+  observacao String
+  pontualidade String
+  tipo_desvio_de_funcao String
+  id_registro_monitoramento Int [not null]
+  acidente_de_trabalho Boolean
+  gravida Boolean
+  excluido Boolean
+  descricao_acidente_de_trabalho String
+  registro_monitoramento registro_monitoramento [not null]
+  avaliacao_questionario avaliacao_questionario [not null]
+}
+
+Table questionarios_aud {
+  id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  acidente_de_trabalho Boolean
+  autonomia String
+  conhecimento String
+  descricao_desvio_de_funcao String
+  desvio_de_funcao String
+  experiencia_profissional String
+  gravida Boolean
+  habilidade String
+  motivacao String
+  observacao String
+  pontualidade String
+  tipo_desvio_de_funcao String
+  id_registro_monitoramento Int
+  descricao_acidente_de_trabalho String
+  revinfo revinfo [not null]
+
+  indexes {
+    (id, rev) [pk]
+  }
+}
+
+Table registro_monitoramento {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  data_monitoramento DateTime [not null]
+  data_prox_monitoramento DateTime
+  links String
+  observacao String
+  principais_registros String
+  sub_meta String
+  unidade_lotacao String
+  id_beneficiario Int [not null]
+  id_comprovacao Int
+  id_demandante Int
+  id_monitor Int [not null]
+  id_monitor_associado Int [not null]
+  id_municipio Int
+  presente Boolean
+  excluido Boolean
+  id_agendamento Int
+  id_meta Int
+  tipo_monitoramento String
+  agendamentos agendamentos
+  Egresso Egresso [not null]
+  comprovacao comprovacao
+  Demandante Demandante
+  metas metas
+  Colaborador_ColaboradorToregistro_monitoramento_id_monitor Colaborador [not null]
+  Colaborador_ColaboradorToregistro_monitoramento_id_monitor_associado Colaborador [not null]
+  Municipio Municipio
+  questionarios questionarios [not null]
+  resposta_item resposta_item [not null]
+  resposta_item_aud resposta_item_aud [not null]
+}
+
+Table registro_monitoramento_aud {
+  id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  data_monitoramento DateTime
+  data_prox_monitoramento DateTime
+  links String
+  observacao String
+  presente Boolean
+  principais_registros String
+  sub_meta String
+  unidade_lotacao String
+  id_beneficiario Int
+  id_comprovacao Int
+  id_demandante Int
+  id_monitor Int
+  id_monitor_associado Int
+  id_municipio Int
+  id_agendamento Int
+  id_meta Int
+  tipo_monitoramento String
+  revinfo revinfo [not null]
+
+  indexes {
+    (id, rev) [pk]
+  }
+}
+
+Table RegraContratacao {
+  id Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  ativo Boolean
+  demandante Bytes
+  formacao Bytes
+  municipio Bytes
+  demandante_id_demandante Int
+  formacao_id_formacao Int
+  municipio_id_municipio Int
+  version Int [not null]
+  Demandante Demandante
+  Formacao Formacao
+  Municipio Municipio
+}
+
+Table resposta_item {
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  observacao String
+  registro_monitoramento_id Int [not null]
+  resposta_id Int [not null]
+  pergunta_id Int [not null]
+  perguntas perguntas [not null]
+  registro_monitoramento registro_monitoramento [not null]
+  respostas respostas [not null]
+
+  indexes {
+    (pergunta_id, registro_monitoramento_id, resposta_id) [pk]
+  }
+}
+
+Table resposta_item_aud {
+  pergunta_id Int [not null]
+  registro_monitoramento_id Int [not null]
+  resposta_id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  observacao String
+  perguntas perguntas [not null]
+  registro_monitoramento registro_monitoramento [not null]
+  respostas respostas [not null]
+  revinfo revinfo [not null]
+
+  indexes {
+    (pergunta_id, registro_monitoramento_id, resposta_id, rev) [pk]
+  }
+}
+
+Table respostas {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String
+  opcao_resposta opcao_resposta [not null]
+  opcao_resposta_aud opcao_resposta_aud [not null]
+  resposta_item resposta_item [not null]
+  resposta_item_aud resposta_item_aud [not null]
+}
+
+Table respostas_aud {
+  id Int [not null]
+  rev Int [not null]
+  revtype Int
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String
+  revinfo revinfo [not null]
+
+  indexes {
+    (id, rev) [pk]
+  }
+}
+
+Table revinfo {
+  rev Int [pk, increment]
+  revtstmp Int
+  agendamentos_aud agendamentos_aud [not null]
+  comprovacao_aud comprovacao_aud [not null]
+  metas_aud metas_aud [not null]
+  opcao_resposta_aud opcao_resposta_aud [not null]
+  perguntas_aud perguntas_aud [not null]
+  periodos_aud periodos_aud [not null]
+  questionarios_aud questionarios_aud [not null]
+  registro_monitoramento_aud registro_monitoramento_aud [not null]
+  resposta_item_aud resposta_item_aud [not null]
+  respostas_aud respostas_aud [not null]
+}
+
+Table Situacao {
+  id_situacao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String [not null]
+  id_categoria Int [not null]
+  cor String
+  version Int [not null]
+  CategoriaDaSituacao CategoriaDaSituacao [not null]
+  Vaga Vaga [not null]
+}
+
+Table sysdiagrams {
+  name String [not null]
+  principal_id Int [not null]
+  diagram_id Int [pk, increment]
+  version Int
+  definition Bytes
+
+  indexes {
+    (principal_id, name) [unique]
+  }
+}
+
+Table Tamanho {
+  id_tamanho Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  descricao String [not null]
+  ordem Int [unique]
+  sigla String [not null]
+  version Int [not null]
+  MaterialEgresso MaterialEgresso [not null]
+}
+
+Table Telefone {
+  seq Int [not null]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  version Int [not null]
+  descricao String
+  numero String [not null]
+  tipo String
+  id_egresso Int [not null]
+  Egresso Egresso [not null]
+
+  indexes {
+    (id_egresso, seq) [pk]
+  }
+}
+
+Table Territorio {
+  id_territorio Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  version Int [not null]
+  uf String
+  Municipio Municipio [not null]
+}
+
+Table TipoAssistenciaSocial {
+  id_tipoAssistenciaSocial Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  version Int [not null]
+  AssistenciaSocial AssistenciaSocial [not null]
+}
+
+Table TipoDeAcao {
+  id_tipoDeAcao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  version Int [not null]
+  Acao Acao [not null]
+}
+
+Table TipoModeloDeOficio {
+  id Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  version Int [not null]
+  ativo Boolean
+  codigo String
+  descricao String
+  ModeloDeOficio ModeloDeOficio [not null]
+}
+
+Table UnidadeDeLotacao {
+  id_unidadeDeLotacao Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String
+  id_instituicao Int [not null]
+  bairro String
+  cep String
+  logradouro String
+  id_municipio Int
+  version Int [not null]
+  Instituicao Instituicao [not null]
+  Municipio Municipio
+  PontoFocal PontoFocal [not null]
+}
+
+Table UnidadeDeMedida {
+  id Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  nome String [not null]
+  sigla String [not null]
+  version Int [not null]
+  MaterialEgresso MaterialEgresso [not null]
+}
+
+Table Vaga {
+  id_vaga Int [pk, increment]
+  dataAlteracao DateTime
+  dataCriacao DateTime
+  usuario_atualizacao String
+  usuario_criacao String
+  bairroUnidadeDeLotacao String
+  cepUnidadeDeLotacao String
+  dataConvocacaoSETRESINE String
+  dataDeEnvioDaSituacaoParaSETRESINE String
+  dataInicioAtividades DateTime
+  dataRemessaSETRESINE String
+  demandante String
+  emailPontoFocal String
+  instituicao String
+  logradouroUnidadeDeLotacao String
+  mesRemessaSETRESINE String
+  pontoFocalNaUnidade String
+  publicacaoDiarioOficial String
+  remessaSETRESINE String
+  telefone1PontoFocal String
+  telefone2PontoFocal String
+  telefone3PontoFocal String
+  telefone4PontoFocal String
+  telefone5PontoFocal String
+  unidadeDeLotacao String
+  id_egresso Int
+  id_municipioDaVaga Int
+  id_municipioUnidadeDeLotacao Int
+  id_situacao Int
+  id_demandante Int
+  observacaoInicioAtividades String
+  version Int [not null]
+  Demandante Demandante
+  Egresso Egresso
+  Municipio_MunicipioToVaga_id_municipioDaVaga Municipio
+  Municipio_MunicipioToVaga_id_municipioUnidadeDeLotacao Municipio
+  Situacao Situacao
+  MonitorDemandante MonitorDemandante [not null]
+}
+
+Table Vaga_AUD {
+  id_vaga Int [not null]
+  REV Int [not null]
+  REVTYPE Int
+  bairroUnidadeDeLotacao String
+  cepUnidadeDeLotacao String
+  dataConvocacaoSETRESINE String
+  dataDeEnvioDaSituacaoParaSETRESINE String
+  dataInicioAtividades DateTime
+  dataRemessaSETRESINE String
+  demandante String
+  emailPontoFocal String
+  instituicao String
+  logradouroUnidadeDeLotacao String
+  mesRemessaSETRESINE String
+  pontoFocalNaUnidade String
+  publicacaoDiarioOficial String
+  remessaSETRESINE String
+  telefone1PontoFocal String
+  telefone2PontoFocal String
+  telefone3PontoFocal String
+  telefone4PontoFocal String
+  telefone5PontoFocal String
+  unidadeDeLotacao String
+  id_egresso Int
+  id_municipioDaVaga Int
+  id_municipioUnidadeDeLotacao Int
+  id_situacao Int
+  id_demandante Int
+  observacaoInicioAtividades String
+  VersaoDosDados VersaoDosDados [not null]
+
+  indexes {
+    (id_vaga, REV) [pk]
+  }
+}
+
+Table VersaoDosDados {
+  id_versao Int [pk, increment]
+  login String
+  timestamp Int [not null]
+  Acao_AUD Acao_AUD [not null]
+  AssistenciaSocial_AUD AssistenciaSocial_AUD [not null]
+  Egresso_AUD Egresso_AUD [not null]
+  MaterialEgresso_AUD MaterialEgresso_AUD [not null]
+  Vaga_AUD Vaga_AUD [not null]
+}
+
+Table visita_beneficiario {
+  id Int [pk, increment]
+  dataalteracao DateTime
+  datacriacao DateTime
+  excluido Boolean
+  usuario_atualizacao String
+  usuario_criacao String
+  data_visita DateTime
+  status String
+  id_colaborador Int
+  id_egresso Int
+  Colaborador Colaborador
+  Egresso Egresso
+}
+
+Ref: Acao.id_egresso > Egresso.id_egresso [delete: No Action]
+
+Ref: Acao.id_tipoDeAcao > TipoDeAcao.id_tipoDeAcao
+
+Ref: Acao_AUD.REV > VersaoDosDados.id_versao
+
+Ref: agendamentos.id_beneficiario > Egresso.id_egresso
+
+Ref: agendamentos.id_periodo > periodos.id
+
+Ref: agendamentos_aud.rev > revinfo.rev
+
+Ref: AssistenciaSocial.id_egresso > Egresso.id_egresso [delete: No Action]
+
+Ref: AssistenciaSocial.id_tipoAssistenciaSocial > TipoAssistenciaSocial.id_tipoAssistenciaSocial
+
+Ref: AssistenciaSocial_AUD.REV > VersaoDosDados.id_versao
+
+Ref: avaliacao_questionario.id_avaliacao > avaliacao_monitoramento.id
+
+Ref: avaliacao_questionario.id_questionario > questionarios.id
+
+Ref: Campanha.id_contadeemail > ContaDeEmail.id_contaDeEmail [delete: No Action]
+
+Ref: Campanha.id_modeloDeOficio > ModeloDeOficio.id_documento [delete: No Action]
+
+Ref: CI.id_documento - Documento.id_documento
+
+Ref: CI.id_egresso > Egresso.id_egresso [delete: No Action]
+
+Ref: Colaborador.ID_ESC_REGIONAL > EscritorioRegional.id_esc_regional [delete: No Action]
+
+Ref: comprovacao_aud.rev > revinfo.rev
+
+Ref: CoordenadorFocal.id_demandante > Demandante.id_demandante
+
+Ref: Demandante.id_colaborador > Colaborador.id_colaborador [delete: No Action]
+
+Ref: DistanciaEntreMunicipios.id_municipioDestino > Municipio.id_municipio [delete: No Action]
+
+Ref: DistanciaEntreMunicipios.id_municipioOrigem > Municipio.id_municipio [delete: No Action]
+
+Ref: DocumentoDoEgresso.id_documento - Documento.id_documento
+
+Ref: DocumentoDoEgresso.id_egresso > Egresso.id_egresso
+
+Ref: Egresso.id_deficiencia > Deficiencia.id_deficiencia [delete: No Action]
+
+Ref: Egresso.id_formacao > Formacao.id_formacao [delete: No Action]
+
+Ref: Egresso.id_municipio > Municipio.id_municipio
+
+Ref: Egresso.id_municipioEscola > Municipio.id_municipio
+
+Ref: Egresso.id_pontoFocal > PontoFocal.id_pontoFocal [delete: No Action]
+
+Ref: Egresso_AUD.REV > VersaoDosDados.id_versao
+
+Ref: EgressoLista.id_egresso > Egresso.id_egresso [delete: No Action]
+
+Ref: EgressoLista.id_lista > Lista.id_lista [delete: No Action]
+
+Ref: EnvioDeEmail.acao_id_acao > Acao.id_acao [delete: No Action]
+
+Ref: EnvioDeEmail.egresso_id_egresso > Egresso.id_egresso [delete: No Action]
+
+Ref: EnvioDeEmail.id_campanha > Campanha.id_campanha [delete: No Action]
+
+Ref: EscritorioRegional.ID_MUNICIPIO - Municipio.id_municipio [delete: No Action]
+
+Ref: Evento.id_localDoEvento > LocalDoEvento.id_localDoEvento [delete: No Action]
+
+Ref: Formacao.id_eixoDeFormacao > EixoDeFormacao.id_eixoDeFormacao
+
+Ref: Instituicao.id_demandante > Demandante.id_demandante
+
+Ref: LocalDoEvento.id_municipio > Municipio.id_municipio [delete: No Action]
+
+Ref: MaterialEgresso.id_egresso > Egresso.id_egresso [delete: No Action]
+
+Ref: MaterialEgresso.material_id_material > Material.id_material
+
+Ref: MaterialEgresso.tamanho_id_tamanho > Tamanho.id_tamanho
+
+Ref: MaterialEgresso.unidade_id > UnidadeDeMedida.id
+
+Ref: MaterialEgresso_AUD.REV > VersaoDosDados.id_versao
+
+Ref: metas_aud.rev > revinfo.rev
+
+Ref: ModeloDeOficio.id_documento - Documento.id_documento
+
+Ref: ModeloDeOficio.tipoModelo_id > TipoModeloDeOficio.id [delete: No Action]
+
+Ref: monitoramento.id_beneficiario > Egresso.id_egresso
+
+Ref: MonitorDemandante.id_colaborador > Colaborador.id_colaborador [delete: No Action]
+
+Ref: MonitorDemandante.id_demandante > Demandante.id_demandante [delete: No Action]
+
+Ref: MonitorDemandante.id_municipio > Municipio.id_municipio [delete: No Action]
+
+Ref: MonitorDemandante.id_vaga > Vaga.id_vaga [delete: No Action]
+
+Ref: Municipio.ID_ESC_REGIONAL - EscritorioRegional.id_esc_regional [delete: No Action]
+
+Ref: Municipio.id_territorio > Territorio.id_territorio [delete: No Action]
+
+Ref: Oficio.id_documento - Documento.id_documento
+
+Ref: Oficio.id_egresso > Egresso.id_egresso [delete: No Action]
+
+Ref: Oficio.id_modelo > ModeloDeOficio.id_documento [delete: No Action]
+
+Ref: opcao_resposta.pergunta_id > perguntas.id
+
+Ref: opcao_resposta.resposta_id > respostas.id
+
+Ref: opcao_resposta_aud.pergunta_id > perguntas.id
+
+Ref: opcao_resposta_aud.resposta_id > respostas.id
+
+Ref: opcao_resposta_aud.rev > revinfo.rev
+
+Ref: perguntas_aud.rev > revinfo.rev
+
+Ref: periodos_aud.rev > revinfo.rev
+
+Ref: PontoFocal.id_unidadeDeLotacao > UnidadeDeLotacao.id_unidadeDeLotacao
+
+Ref: questionarios.id_registro_monitoramento > registro_monitoramento.id
+
+Ref: questionarios_aud.rev > revinfo.rev
+
+Ref: registro_monitoramento.id_agendamento > agendamentos.id [delete: No Action]
+
+Ref: registro_monitoramento.id_beneficiario > Egresso.id_egresso
+
+Ref: registro_monitoramento.id_comprovacao > comprovacao.id [delete: No Action]
+
+Ref: registro_monitoramento.id_demandante > Demandante.id_demandante [delete: No Action]
+
+Ref: registro_monitoramento.id_meta > metas.id [delete: No Action]
+
+Ref: registro_monitoramento.id_monitor > Colaborador.id_colaborador
+
+Ref: registro_monitoramento.id_monitor_associado > Colaborador.id_colaborador
+
+Ref: registro_monitoramento.id_municipio > Municipio.id_municipio [delete: No Action]
+
+Ref: registro_monitoramento_aud.rev > revinfo.rev
+
+Ref: RegraContratacao.demandante_id_demandante > Demandante.id_demandante [delete: No Action]
+
+Ref: RegraContratacao.formacao_id_formacao > Formacao.id_formacao [delete: No Action]
+
+Ref: RegraContratacao.municipio_id_municipio > Municipio.id_municipio [delete: No Action]
+
+Ref: resposta_item.pergunta_id > perguntas.id
+
+Ref: resposta_item.registro_monitoramento_id > registro_monitoramento.id
+
+Ref: resposta_item.resposta_id > respostas.id
+
+Ref: resposta_item_aud.pergunta_id > perguntas.id
+
+Ref: resposta_item_aud.registro_monitoramento_id > registro_monitoramento.id
+
+Ref: resposta_item_aud.resposta_id > respostas.id
+
+Ref: resposta_item_aud.rev > revinfo.rev
+
+Ref: respostas_aud.rev > revinfo.rev
+
+Ref: Situacao.id_categoria > CategoriaDaSituacao.id_categoriaDaSituacao
+
+Ref: Telefone.id_egresso > Egresso.id_egresso
+
+Ref: UnidadeDeLotacao.id_instituicao > Instituicao.id_instituicao
+
+Ref: UnidadeDeLotacao.id_municipio > Municipio.id_municipio [delete: No Action]
+
+Ref: Vaga.id_demandante > Demandante.id_demandante [delete: No Action]
+
+Ref: Vaga.id_egresso > Egresso.id_egresso [delete: No Action]
+
+Ref: Vaga.id_municipioDaVaga > Municipio.id_municipio [delete: No Action]
+
+Ref: Vaga.id_municipioUnidadeDeLotacao > Municipio.id_municipio [delete: No Action]
+
+Ref: Vaga.id_situacao > Situacao.id_situacao [delete: No Action]
+
+Ref: Vaga_AUD.REV > VersaoDosDados.id_versao
+
+Ref: visita_beneficiario.id_colaborador > Colaborador.id_colaborador [delete: No Action]
+
+Ref: visita_beneficiario.id_egresso > Egresso.id_egresso [delete: No Action]
