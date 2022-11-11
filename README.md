@@ -5,15 +5,15 @@
 
 <div align="center">
 
-<a href="">[![Alerts](https://img.shields.io/lgtm/alerts/github/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api) </a>
-<a href="">[![Grade](https://img.shields.io/lgtm/grade/javascript/github/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api)</a>
-<a href="">[![Code Size](https://img.shields.io/github/languages/code-size/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api)</a>
-<a href="">[![Repo Size](https://img.shields.io/github/repo-size/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api)</a>
+<a href="">![Known Vulnerabilities](https://snyk.io/test/github/frtechdev/flem-bd-legado-api/badge.svg)</a>
+<a href="">![Code Size](https://img.shields.io/github/languages/code-size/frtechdev/flem-bd-legado-api)</a>
+<a href="">![Repo Size](https://img.shields.io/github/repo-size/frtechdev/flem-bd-legado-api)</a>
 <a href="">[![Contributors](https://img.shields.io/github/contributors/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/graphs/contributors)</a><br>
-<a href="">[![Last Commit](https://img.shields.io/github/last-commit/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/) </a>
+<a href="">![Last Commit](https://img.shields.io/github/last-commit/frtechdev/flem-bd-legado-api)</a>
 <a href="">[![Fork](https://img.shields.io/github/forks/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/fork) </a>
-<a href="">![Version](https://img.shields.io/badge/version-0.0.3-005bff) </a>
+<a href="">![Version](https://img.shields.io/badge/version-1.0.2-005bff) </a>
 <a href="">[![license](https://img.shields.io/github/license/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/LICENSE)</a>
+
 <br>
 
 </div>
@@ -127,7 +127,46 @@ Documentação adicional pode ser encontrada [aqui](https://frtechdev.github.io/
 
 </a>
 
-Em breve.
+<a name="section-use-project">
+
+### Como Projeto
+
+</a>
+
+1 - Faça um git clone ou o download do repositório, da forma que preferir
+
+`git clone https://github.com/frtechdev/flem-bd-legado-api.git`
+
+2 - Instale um gerenciador de pacotes (preferencialmente yarn) utilizando um terminal no diretório raiz do repositório clonado
+
+`yarn` ou `npm install`
+
+3 - Execute a aplicação no terminal
+
+`yarn dev` ou `npm run dev`
+
+<a name="section-use-app">
+
+### Como Aplicação
+
+</a>
+
+1 - Instale uma instância docker em uma máquina dedicada, conforme instruções na [Documentação do Docker](https://docs.docker.com/engine/install/).
+
+2 - Faça um git clone ou o download do repositório, da forma que preferir
+
+`git clone https://github.com/frtechdev/flem-bd-legado-api.git`
+
+3 - Execute o Dockerfile no diretório raiz do repositório clonado
+
+`docker build . -t flem-bd-legado-api:dev`
+
+4 - Inicie o container
+
+`docker run -d -p XXXX:3000 --name flem-bd-legado-api:dev`
+
+Altere o "XXXX" para uma porta externa de sua escolha. Por padrão, a porta interna é 3000.
+Para alterar a porta interna, altere a linha 44 do [Dockerfile](https://github.com/frtechdev/flem-bd-legado-api/blob/main/Dockerfile).
 
 <a name="section-vars">
 
@@ -149,6 +188,34 @@ Para testar a aplicação, crie um arquivo .env com as seguintes variáveis de a
 ## Notas de versão
 
 </a>
+
+<br>
+
+### v1.0.2-221111
+
+- Atualização da Documentação
+- Branch Rebase
+
+<br>
+
+### v1.0.1-221111
+
+- Atualização da Documentação
+
+<br>
+
+### v1.0.0-221111
+
+- Atualização da Documentação
+- Inclusão de Dockerfile e instruções para implantação
+- Criação de função utilitária para compor queries
+- Organização de importação de funções de serviço e funções utilitárias
+
+<br>
+
+### v0.0.4-220902
+
+- v0.0.3-220902dx
 
 <br>
 
