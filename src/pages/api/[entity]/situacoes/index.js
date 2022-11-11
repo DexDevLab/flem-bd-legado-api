@@ -1,35 +1,5 @@
 import { getSituacoes, getSituacoesByFilter } from "controller/situacoes";
-import { allowCors } from "services/apiAllowCors";
-import { parseArrayToInteger, parseArrayToString } from "utils/parsers";
-
-/**
- * Função para compor o filtro da query. Caso a requisição faça uma solicitação
- * ao BD utilizando critérios de pesquisa ("condition") e um objeto de filtro,
- * aplica a alteração a um objeto de filtro para realizar a pesquisa corretamente.
- * @param {Object} req HTTP request.
- * @returns Objeto contendo os detalhes do filtro os quais incorporam e compõem a
- * query do Prisma.
- */
-const composeFilter = (req) => {
-  const { entity, condition, ...query } = req.query;
-  const keys = Object.keys(query);
-  const filter = {
-    [condition]: [],
-  };
-  keys.forEach((key) => {
-    switch (key) {
-      case "id_situacao":
-        filter[condition].push({
-          [key]: { in: parseArrayToInteger(query[key]) },
-        });
-        break;
-      default:
-        filter[condition] = parseArrayToString(query[key], key);
-        break;
-    }
-  });
-  return filter;
-};
+import { allowCors } from "services";
 
 /**
  * Fornece Situações e lista de Situações conforme critérios.
@@ -49,7 +19,7 @@ const composeFilter = (req) => {
 async function handler(req, res) {
   if (req.method === "GET") {
     // CONSTRÓI O FILTRO CONTENDO OS CRIÉRIOS DE PESQUISA
-    const filter = composeFilter(req);
+    const filter = queryComposer(req.query);
     const { entity, condition, ...params } = req.query;
     try {
       // SE NENHUM CRITÉRIO DE PESQUISA É INCLUÍDO, ELE RETORNA TODOS OS BENEFICIÁRIOS.
@@ -68,25 +38,31 @@ async function handler(req, res) {
         } catch (error) {
           // SE UM CRITÉRIO FOR INCLUÍDO MAS NÃO A CONDIÇÃO DE PESQUISA, RETORNA ERRO
           if (!condition) {
-            return res
-              .status(400)
-              .json({
-                status: 400,
-                message: "ERRO DE API - A chamada requer 'CONDITION'.",
-                error: error.message
-              });
+            return res.status(400).json({
+              status: 400,
+              message: "ERRO DE API - A chamada requer 'CONDITION'.",
+              error: error.message,
+            });
           }
           // SE A CONSULTA RESULTOU EM ERRO POR QUALQUER OUTRO MOTIVO
           return res
             .status(500)
-            .json({ status: 500, message: "QUERY ERROR", error: error.message});
+            .json({
+              status: 500,
+              message: "QUERY ERROR",
+              error: error.message,
+            });
         }
       }
     } catch (error) {
       // SE FOI INSERIDA A CONDIÇÃO, MAS ELA ESTAVA INCORRETA, OU OS CRITÉRIOS DE PESQUISA NÃO BATEM
       return res
         .status(405)
-        .json({ status: 405, message: "METHOD NOT ALLOWED", error: error.message });
+        .json({
+          status: 405,
+          message: "METHOD NOT ALLOWED",
+          error: error.message,
+        });
     }
   } else {
     // SE FOI FEITO OUTRO MÉTODO ALÉM DE GET

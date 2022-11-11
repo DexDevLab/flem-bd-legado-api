@@ -4,9 +4,9 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "next dev -p 4030",
+    "dev": "next dev -p 4010",
     "build": "next build",
-    "start": "next start -p 4030",
+    "start": "next start",
     "lint": "next lint",
     "docs": "jsdoc --readme README.md -c jsdoc-config.json",
     "db": "prisma studio",

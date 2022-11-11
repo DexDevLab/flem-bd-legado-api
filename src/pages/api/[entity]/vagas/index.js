@@ -1,36 +1,5 @@
 import { getVagas, getVagasByFilter } from "controller/vagas";
-import { allowCors } from "services/apiAllowCors";
-import { parseArrayToInteger, parseArrayToString } from "utils/parsers";
-
-/**
- * Função para compor o filtro da query. Caso a requisição faça uma solicitação
- * ao BD utilizando critérios de pesquisa ("condition") e um objeto de filtro,
- * aplica a alteração a um objeto de filtro para realizar a pesquisa corretamente.
- * @param {Object} req HTTP request.
- * @returns Objeto contendo os detalhes do filtro os quais incorporam e compõem a
- * query do Prisma.
- */
-const composeFilter = (req) => {
-  const { entity, condition, ...query } = req.query;
-  const keys = Object.keys(query);
-  const filter = {
-    [condition]: [],
-  };
-  keys.forEach((key) => {
-    switch (key) {
-      case "id_egresso":
-      case "id_vaga":
-        filter[condition].push({
-          [key]: { in: parseArrayToInteger(query[key]) },
-        });
-        break;
-      default:
-        filter[condition] = parseArrayToString(query[key], key);
-        break;
-    }
-  });
-  return filter;
-};
+import { allowCors } from "services";
 
 /**
  * Fornece Vagas e listas de Vagas conforme critérios.
@@ -50,7 +19,7 @@ const composeFilter = (req) => {
 async function handler(req, res) {
   if (req.method === "GET") {
     // CONSTRÓI O FILTRO CONTENDO OS CRIÉRIOS DE PESQUISA
-    const filter = composeFilter(req);
+    const filter = queryComposer(req.query);
     const { entity, condition, ...params } = req.query;
     try {
       // SE NENHUM CRITÉRIO DE PESQUISA É INCLUÍDO, ELE RETORNA TODOS OS BENEFICIÁRIOS.
@@ -76,24 +45,20 @@ async function handler(req, res) {
             });
           }
           // SE A CONSULTA RESULTOU EM ERRO POR QUALQUER OUTRO MOTIVO
-          return res
-            .status(500)
-            .json({
-              status: 500,
-              message: "QUERY ERROR",
-              error: error.message,
-            });
+          return res.status(500).json({
+            status: 500,
+            message: "QUERY ERROR",
+            error: error.message,
+          });
         }
       }
     } catch (error) {
       // SE FOI INSERIDA A CONDIÇÃO, MAS ELA ESTAVA INCORRETA, OU OS CRITÉRIOS DE PESQUISA NÃO BATEM
-      return res
-        .status(405)
-        .json({
-          status: 405,
-          message: "METHOD NOT ALLOWED",
-          error: error.message,
-        });
+      return res.status(405).json({
+        status: 405,
+        message: "METHOD NOT ALLOWED",
+        error: error.message,
+      });
     }
   } else {
     // SE FOI FEITO OUTRO MÉTODO ALÉM DE GET

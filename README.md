@@ -95,7 +95,7 @@ API que consome requisições das aplicações FLEM para o Servidor de Banco de 
 - **Framework estrutural:** [Next.js](https://nextjs.org/docs/getting-started)
 - **Biblioteca de Conexão ODBC:** [Prisma.io](https://www.prisma.io)
 - **Gerenciador de Bibliotecas:** [Yarn](https://yarnpkg.com/getting-started)
-- **Bibliotecas:** Para uma lista completa de bibliotecas e dependências nos mais variados escopos, conferir o arquivo [package.json](https://github.com/frtechdev/flem-bd-dominio-api/blob/master/package.json).
+- **Bibliotecas:** Para uma lista completa de bibliotecas e dependências nos mais variados escopos, conferir o arquivo [package.json](https://github.com/frtechdev/flem-bd-dominio-api/blob/main/package.json).
 
 <br>
 <hr>

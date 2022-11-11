@@ -1,4 +1,3 @@
-
 FROM --platform=linux/amd64 node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -32,7 +31,6 @@ RUN adduser --system --uid 1001 nextappuser
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/prisma /app/prisma
-
 
 COPY --from=builder --chown=nextappuser:nextappgroup /app/.next/standalone ./
 COPY --from=builder --chown=nextappuser:nextappgroup /app/.next/static ./.next/static
