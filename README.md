@@ -11,8 +11,9 @@
 <a href="">[![Contributors](https://img.shields.io/github/contributors/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/graphs/contributors)</a><br>
 <a href="">![Last Commit](https://img.shields.io/github/last-commit/frtechdev/flem-bd-legado-api)</a>
 <a href="">[![Fork](https://img.shields.io/github/forks/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/fork) </a>
-<a href="">![Version](https://img.shields.io/badge/version-1.0.0-005bff) </a>
+<a href="">![Version](https://img.shields.io/badge/version-1.0.3-005bff) </a>
 <a href="">[![license](https://img.shields.io/github/license/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/LICENSE)</a>
+
 <br>
 
 </div>
@@ -165,7 +166,7 @@ Documentação adicional pode ser encontrada [aqui](https://frtechdev.github.io/
 `docker run -d -p XXXX:3000 --name flem-bd-legado-api:dev`
 
 Altere o "XXXX" para uma porta externa de sua escolha. Por padrão, a porta interna é 3000.
-Para alterar a porta interna, altere a linha 40 do [Dockerfile](https://github.com/frtechdev/flem-bd-legado-api-api/blob/main/Dockerfile).
+Para alterar a porta interna, altere a linha 44 do [Dockerfile](https://github.com/frtechdev/flem-bd-legado-api/blob/main/Dockerfile).
 
 <a name="section-vars">
 
@@ -187,6 +188,19 @@ Para testar a aplicação, crie um arquivo .env com as seguintes variáveis de a
 ## Notas de versão
 
 </a>
+
+<br>
+
+### v1.0.3-221111
+
+- Atualização da Documentação
+
+<br>
+
+### v1.0.2-221111
+
+- Atualização da Documentação
+- Branch Rebase
 
 <br>
 
