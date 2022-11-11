@@ -1,47 +1,5 @@
 import { getBenef, getBenefByFilter } from "controller/beneficiarios";
 import { allowCors } from "services/apiAllowCors";
-import {
-  parseArrayToInteger,
-  parseArrayToString,
-  parseArrayToStringEquals,
-} from "utils/parsers";
-
-/**
- * Função para compor o filtro da query. Caso a requisição faça uma solicitação
- * ao BD utilizando critérios de pesquisa ("condition") e um objeto de filtro,
- * aplica a alteração a um objeto de filtro para realizar a pesquisa corretamente.
- * @param {Object} req HTTP request.
- * @returns Objeto contendo os detalhes do filtro os quais incorporam e compõem a
- * query do Prisma.
- */
-const composeFilter = (req) => {
-  const { entity, condition, ...query } = req.query;
-  const keys = Object.keys(query);
-  const filter = {
-    [condition]: [],
-  };
-  keys.forEach((key) => {
-    switch (key) {
-      case "id_egresso":
-        filter[condition].push({
-          [key]: { in: parseArrayToInteger(query[key]) },
-        });
-        break;
-      case "nome":
-      case "matriculaFlem":
-      case "matriculaSAEB":
-      case "cpf":
-        parseArrayToStringEquals(query[key], key).map((item) =>
-          filter[condition].push(item)
-        );
-        break;
-      default:
-        filter[condition] = parseArrayToString(query[key], key);
-        break;
-    }
-  });
-  return filter;
-};
 
 /**
  * Fornece Beneficiários e listas de Beneficiários, conforme critérios.
@@ -61,7 +19,7 @@ const composeFilter = (req) => {
 async function handler(req, res) {
   if (req.method === "GET") {
     // CONSTRÓI O FILTRO CONTENDO OS CRIÉRIOS DE PESQUISA
-    const filter = composeFilter(req);
+    const filter = queryComposer(req.query);
     const { entity, condition, ...params } = req.query;
     try {
       // SE NENHUM CRITÉRIO DE PESQUISA É INCLUÍDO, ELE RETORNA TODOS OS BENEFICIÁRIOS.
