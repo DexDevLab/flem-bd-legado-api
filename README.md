@@ -190,6 +190,12 @@ Para testar a aplicação, crie um arquivo .env com as seguintes variáveis de a
 
 <br>
 
+### v1.0.1-221111
+
+- Atualização da Documentação
+
+<br>
+
 ### v1.0.0-221111
 
 - Atualização da Documentação

@@ -107,7 +107,7 @@
   <body>
 
     <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">API de Banco de Dados Legado FLEM - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-bd-legado-api/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="8308629" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#allowCors">allowCors</a></li><li class="accordion-list" id=""><a href="global.html#composeFilter">composeFilter</a></li><li class="accordion-list" id=""><a href="global.html#formatCPF">formatCPF</a></li><li class="accordion-list" id=""><a href="global.html#getBenef">getBenef</a></li><li class="accordion-list" id=""><a href="global.html#getBenefByFilter">getBenefByFilter</a></li><li class="accordion-list" id=""><a href="global.html#getSituacoes">getSituacoes</a></li><li class="accordion-list" id=""><a href="global.html#getSituacoesByFilter">getSituacoesByFilter</a></li><li class="accordion-list" id=""><a href="global.html#getVagas">getVagas</a></li><li class="accordion-list" id=""><a href="global.html#getVagasByFilter">getVagasByFilter</a></li><li class="accordion-list" id=""><a href="global.html#handler">handler</a></li><li class="accordion-list" id=""><a href="global.html#maskCapitalize">maskCapitalize</a></li><li class="accordion-list" id=""><a href="global.html#maskCPF">maskCPF</a></li><li class="accordion-list" id=""><a href="global.html#maskDate">maskDate</a></li><li class="accordion-list" id=""><a href="global.html#MyApp">MyApp</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToInteger">parseArrayToInteger</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToString">parseArrayToString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToStringEquals">parseArrayToStringEquals</a></li><li class="accordion-list" id=""><a href="global.html#prisma">prisma</a></li><li class="accordion-list" id=""><a href="global.html#unmaskCPF">unmaskCPF</a></li></ul> </div>
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">API de Banco de Dados Legado FLEM - Documentação</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://frtechnologies.com.br' class='some-class menu-link' id='some-id' target='_blank'>Website</a></li><li class="menu-li"><a href='https://github.com/frtechdev/flem-bd-legado-api/' class='some-class menu-link' id='some-id' target='_blank'>Github</a></li></ul><div class="accordion collapsed" id="9138598" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#allowCors">allowCors</a></li><li class="accordion-list" id=""><a href="global.html#formatCPF">formatCPF</a></li><li class="accordion-list" id=""><a href="global.html#getBenef">getBenef</a></li><li class="accordion-list" id=""><a href="global.html#getBenefByFilter">getBenefByFilter</a></li><li class="accordion-list" id=""><a href="global.html#getSituacoes">getSituacoes</a></li><li class="accordion-list" id=""><a href="global.html#getSituacoesByFilter">getSituacoesByFilter</a></li><li class="accordion-list" id=""><a href="global.html#getVagas">getVagas</a></li><li class="accordion-list" id=""><a href="global.html#getVagasByFilter">getVagasByFilter</a></li><li class="accordion-list" id=""><a href="global.html#handler">handler</a></li><li class="accordion-list" id=""><a href="global.html#maskCapitalize">maskCapitalize</a></li><li class="accordion-list" id=""><a href="global.html#maskCPF">maskCPF</a></li><li class="accordion-list" id=""><a href="global.html#maskDate">maskDate</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToInteger">parseArrayToInteger</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToString">parseArrayToString</a></li><li class="accordion-list" id=""><a href="global.html#parseArrayToStringEquals">parseArrayToStringEquals</a></li><li class="accordion-list" id=""><a href="global.html#prisma">prisma</a></li><li class="accordion-list" id=""><a href="global.html#queryComposer">queryComposer</a></li><li class="accordion-list" id=""><a href="global.html#unmaskCPF">unmaskCPF</a></li></ul> </div>
       
         <div class="navbar-resize" id="navbar-resize">
           <div class="resize-dots-container">
@@ -143,36 +143,6 @@
         <article>
             <pre class="prettyprint source linenums"><code>import { getSituacoes, getSituacoesByFilter } from "controller/situacoes";
 import { allowCors } from "services";
-import { parseArrayToInteger, parseArrayToString } from "utils";
-
-/**
- * Função para compor o filtro da query. Caso a requisição faça uma solicitação
- * ao BD utilizando critérios de pesquisa ("condition") e um objeto de filtro,
- * aplica a alteração a um objeto de filtro para realizar a pesquisa corretamente.
- * @param {Object} req HTTP request.
- * @returns Objeto contendo os detalhes do filtro os quais incorporam e compõem a
- * query do Prisma.
- */
-const composeFilter = (req) => {
-  const { entity, condition, ...query } = req.query;
-  const keys = Object.keys(query);
-  const filter = {
-    [condition]: [],
-  };
-  keys.forEach((key) => {
-    switch (key) {
-      case "id_situacao":
-        filter[condition].push({
-          [key]: { in: parseArrayToInteger(query[key]) },
-        });
-        break;
-      default:
-        filter[condition] = parseArrayToString(query[key], key);
-        break;
-    }
-  });
-  return filter;
-};
 
 /**
  * Fornece Situações e lista de Situações conforme critérios.
@@ -192,7 +162,7 @@ const composeFilter = (req) => {
 async function handler(req, res) {
   if (req.method === "GET") {
     // CONSTRÓI O FILTRO CONTENDO OS CRIÉRIOS DE PESQUISA
-    const filter = composeFilter(req);
+    const filter = queryComposer(req.query);
     const { entity, condition, ...params } = req.query;
     try {
       // SE NENHUM CRITÉRIO DE PESQUISA É INCLUÍDO, ELE RETORNA TODOS OS BENEFICIÁRIOS.
@@ -211,25 +181,31 @@ async function handler(req, res) {
         } catch (error) {
           // SE UM CRITÉRIO FOR INCLUÍDO MAS NÃO A CONDIÇÃO DE PESQUISA, RETORNA ERRO
           if (!condition) {
-            return res
-              .status(400)
-              .json({
-                status: 400,
-                message: "ERRO DE API - A chamada requer 'CONDITION'.",
-                error: error.message
-              });
+            return res.status(400).json({
+              status: 400,
+              message: "ERRO DE API - A chamada requer 'CONDITION'.",
+              error: error.message,
+            });
           }
           // SE A CONSULTA RESULTOU EM ERRO POR QUALQUER OUTRO MOTIVO
           return res
             .status(500)
-            .json({ status: 500, message: "QUERY ERROR", error: error.message});
+            .json({
+              status: 500,
+              message: "QUERY ERROR",
+              error: error.message,
+            });
         }
       }
     } catch (error) {
       // SE FOI INSERIDA A CONDIÇÃO, MAS ELA ESTAVA INCORRETA, OU OS CRITÉRIOS DE PESQUISA NÃO BATEM
       return res
         .status(405)
-        .json({ status: 405, message: "METHOD NOT ALLOWED", error: error.message });
+        .json({
+          status: 405,
+          message: "METHOD NOT ALLOWED",
+          error: error.message,
+        });
     }
   } else {
     // SE FOI FEITO OUTRO MÉTODO ALÉM DE GET
@@ -263,7 +239,7 @@ export default allowCors(handler);
       <script src="scripts/search.js"></script>
       <script src="scripts/third-party/fuse.js"></script>
       <script>
-        var list = [{"title":"allowCors","link":"<a href=\"global.html#allowCors\">allowCors</a>"},{"title":"composeFilter","link":"<a href=\"global.html#composeFilter\">composeFilter</a>"},{"title":"formatCPF","link":"<a href=\"global.html#formatCPF\">formatCPF</a>"},{"title":"getBenef","link":"<a href=\"global.html#getBenef\">getBenef</a>"},{"title":"getBenefByFilter","link":"<a href=\"global.html#getBenefByFilter\">getBenefByFilter</a>"},{"title":"getSituacoes","link":"<a href=\"global.html#getSituacoes\">getSituacoes</a>"},{"title":"getSituacoesByFilter","link":"<a href=\"global.html#getSituacoesByFilter\">getSituacoesByFilter</a>"},{"title":"getVagas","link":"<a href=\"global.html#getVagas\">getVagas</a>"},{"title":"getVagasByFilter","link":"<a href=\"global.html#getVagasByFilter\">getVagasByFilter</a>"},{"title":"handler","link":"<a href=\"global.html#handler\">handler</a>"},{"title":"maskCapitalize","link":"<a href=\"global.html#maskCapitalize\">maskCapitalize</a>"},{"title":"maskCPF","link":"<a href=\"global.html#maskCPF\">maskCPF</a>"},{"title":"maskDate","link":"<a href=\"global.html#maskDate\">maskDate</a>"},{"title":"MyApp","link":"<a href=\"global.html#MyApp\">MyApp</a>"},{"title":"parseArrayToInteger","link":"<a href=\"global.html#parseArrayToInteger\">parseArrayToInteger</a>"},{"title":"parseArrayToString","link":"<a href=\"global.html#parseArrayToString\">parseArrayToString</a>"},{"title":"parseArrayToStringEquals","link":"<a href=\"global.html#parseArrayToStringEquals\">parseArrayToStringEquals</a>"},{"title":"prisma","link":"<a href=\"global.html#prisma\">prisma</a>"},{"title":"unmaskCPF","link":"<a href=\"global.html#unmaskCPF\">unmaskCPF</a>"}];
+        var list = [{"title":"allowCors","link":"<a href=\"global.html#allowCors\">allowCors</a>"},{"title":"formatCPF","link":"<a href=\"global.html#formatCPF\">formatCPF</a>"},{"title":"getBenef","link":"<a href=\"global.html#getBenef\">getBenef</a>"},{"title":"getBenefByFilter","link":"<a href=\"global.html#getBenefByFilter\">getBenefByFilter</a>"},{"title":"getSituacoes","link":"<a href=\"global.html#getSituacoes\">getSituacoes</a>"},{"title":"getSituacoesByFilter","link":"<a href=\"global.html#getSituacoesByFilter\">getSituacoesByFilter</a>"},{"title":"getVagas","link":"<a href=\"global.html#getVagas\">getVagas</a>"},{"title":"getVagasByFilter","link":"<a href=\"global.html#getVagasByFilter\">getVagasByFilter</a>"},{"title":"handler","link":"<a href=\"global.html#handler\">handler</a>"},{"title":"maskCapitalize","link":"<a href=\"global.html#maskCapitalize\">maskCapitalize</a>"},{"title":"maskCPF","link":"<a href=\"global.html#maskCPF\">maskCPF</a>"},{"title":"maskDate","link":"<a href=\"global.html#maskDate\">maskDate</a>"},{"title":"parseArrayToInteger","link":"<a href=\"global.html#parseArrayToInteger\">parseArrayToInteger</a>"},{"title":"parseArrayToString","link":"<a href=\"global.html#parseArrayToString\">parseArrayToString</a>"},{"title":"parseArrayToStringEquals","link":"<a href=\"global.html#parseArrayToStringEquals\">parseArrayToStringEquals</a>"},{"title":"prisma","link":"<a href=\"global.html#prisma\">prisma</a>"},{"title":"queryComposer","link":"<a href=\"global.html#queryComposer\">queryComposer</a>"},{"title":"unmaskCPF","link":"<a href=\"global.html#unmaskCPF\">unmaskCPF</a>"}];
         var options = {}
           setupSearch(list, options)
       </script>
