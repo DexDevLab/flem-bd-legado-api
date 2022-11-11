@@ -51,7 +51,7 @@
 
 
     <title>
-      pages/api/index.js
+      services/prisma/queryComposer.js
     </title>
 
     <!--[if lt IE 9]>
@@ -130,7 +130,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        pages/api/index.js
+        services/prisma/queryComposer.js
       </h1>
       
 
@@ -142,23 +142,42 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Rota de redirecionamento para a documentação
- * do jsdoc. Altera o título do documento, visto que
- * a biblioteca jsdoc não possui suporte nativo para
- * esta função.
+ * Função para compor o filtro da query. Caso a requisição faça uma solicitação
+ * ao BD utilizando critérios de pesquisa ("condition") e um objeto de filtro,
+ * aplica a alteração a um objeto de filtro para realizar a pesquisa corretamente.
  * @param {Object} req HTTP request.
- * @param {Object} res HTTP response.
+ * @returns Objeto contendo os detalhes do filtro os quais incorporam e compõem a
+ * query do Prisma.
  */
-export default async function api(req, res) {
-  const fs = require("fs").promises;
-  const docsIndex = "public/index.html";
-  const docsTitle = "API de Banco de Dados Legado FLEM";
-  const fileDocsIndex = await fs.readFile(docsIndex, "utf8");
-  const formattedDocsIndex = fileDocsIndex.replace(/Home/g, docsTitle);
-  await fs.writeFile(docsIndex, formattedDocsIndex, "utf-8");
-  res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.write(formattedDocsIndex);
-  res.end();
+export function queryComposer(criteria) {
+  const { entity, condition, ...query } = criteria;
+  const keys = Object.keys(query);
+  const filter = {
+    [condition]: [],
+  };
+  keys.forEach((key) => {
+    switch (key) {
+      case "id_egresso":
+      case "id_situacao":
+      case "id_vaga":
+        filter[condition].push({
+          [key]: { in: parseArrayToInteger(query[key]) },
+        });
+        break;
+      case "nome":
+      case "matriculaFlem":
+      case "matriculaSAEB":
+      case "cpf":
+        parseArrayToStringEquals(query[key], key).map((item) =>
+          filter[condition].push(item)
+        );
+        break;
+      default:
+        filter[condition] = parseArrayToString(query[key], key);
+        break;
+    }
+  });
+  return filter;
 }
 </code></pre>
         </article>
