@@ -1,6 +1,6 @@
 {
   "name": "flem-bd-legado-api",
-  "version": "1.0.2-221111",
+  "version": "1.0.3-221111",
   "private": true,
   "license": "MIT",
   "scripts": {

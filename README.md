@@ -11,7 +11,7 @@
 <a href="">[![Contributors](https://img.shields.io/github/contributors/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/graphs/contributors)</a><br>
 <a href="">![Last Commit](https://img.shields.io/github/last-commit/frtechdev/flem-bd-legado-api)</a>
 <a href="">[![Fork](https://img.shields.io/github/forks/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/fork) </a>
-<a href="">![Version](https://img.shields.io/badge/version-1.0.2-005bff) </a>
+<a href="">![Version](https://img.shields.io/badge/version-1.0.3-005bff) </a>
 <a href="">[![license](https://img.shields.io/github/license/frtechdev/flem-bd-legado-api)](https://github.com/frtechdev/flem-bd-legado-api/LICENSE)</a>
 
 <br>
@@ -188,6 +188,12 @@ Para testar a aplicação, crie um arquivo .env com as seguintes variáveis de a
 ## Notas de versão
 
 </a>
+
+<br>
+
+### v1.0.3-221111
+
+- Atualização da Documentação
 
 <br>
 
