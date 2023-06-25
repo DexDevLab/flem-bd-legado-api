@@ -1,7 +1,7 @@
 {
   "name": "flem-bd-legado-api",
   "description": "API de conexão com o BD Legado, para o cliente FLEM",
-  "version": "v1.0.6-230624",
+  "version": "v1.0.7-230625",
   "private": true,
   "license": "MIT",
   "scripts": {

@@ -184,10 +184,13 @@ Para mais informações, visite a [Documentação do Docker](https://docs.docker
 
 <br>
 
-### v1.0.6-230624
+### v1.0.7-230625
 
 - Criação de um script de Github Actions para Tag e Release automáticos das versões no branch `main`
 - Adição de um script de Github Actions para deploy automático de imagem Docker
+
+### v1.0.6-230624
+
 - Adição de script de limpeza de index de cache do Git
 - Adição do arquivo `.yarnclean` para sanitização de módulos
 - Inclusão de scripts yarn
