@@ -1,6 +1,7 @@
 {
   "name": "flem-bd-legado-api",
-  "version": "1.0.5-221111",
+  "description": "API de conexão com o BD Legado, para o cliente FLEM",
+  "version": "v1.0.6-230624",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -10,23 +11,28 @@
     "lint": "next lint",
     "docs": "jsdoc --readme README.md -c jsdoc-config.json",
     "db": "prisma studio",
-    "migrate": "prisma migrate dev"
+    "migrate": "prisma migrate dev",
+    "docker:build": "docker build . -t ghcr.io/frtechdev/flem-bd-legado-api:latest",
+    "docker:push": "docker push ghcr.io/frtechdev/flem-bd-legado-api:latest",
+    "caniuse": "npm update --save caniuse-lite browserslist",
+    "clean": "yarn autoclean --force",
+    "git:clear": "bash cleargitcache.sh",
+    "prisma:dbml": "yarn add prisma-dbml-generator --dev && yarn prisma generate && yarn remove prisma-dbml-generator --dev"
   },
   "dependencies": {
-    "@prisma/client": "^3.15.2",
+    "@prisma/client": "^4.16.1",
     "axios": "^0.27.2",
     "multer": "^1.4.5-lts.1",
     "next": "12.1.6",
     "nextjs-cors": "^2.1.1",
-    "prisma": "^3.15.2",
+    "prisma": "^4.16.1",
     "react": "18.1.0",
-    "react-dom": "18.1.0",
-    "xlsx": "^0.18.5"
+    "react-dom": "18.1.0"
   },
   "devDependencies": {
-    "clean-jsdoc-theme": "^3.3.4",
+    "clean-jsdoc-theme": "^4.2.9",
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
-    "jsdoc": "^3.6.10"
+    "jsdoc": "^4.0.2"
   }
 }

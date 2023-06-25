@@ -2,9 +2,11 @@
  * Converte um Array de objetos para um Array de Inteiros. Utilizado
  * para criar os objetos de critério de pesquisa ao BD utilizando
  * queries do Prisma.
+ * @method parseArrayToInteger
+ * @memberof module:utils
  * @param {Array} raw Array contendo valores a serem
  * convertidos para um Array de objetos do tipo Inteiro.
- * @returns Array de objetos do tipo Inteiro.
+ * @returns {Array} Array de objetos do tipo Inteiro.
  */
 export const parseArrayToInteger = (raw) => {
   try {
@@ -32,6 +34,8 @@ export const parseArrayToInteger = (raw) => {
  * Converte um Array de objetos para um Array de Strings. Utilizado
  * para criar os objetos de critério de pesquisa ao BD utilizando
  * queries do Prisma.
+ * @method parseArrayToString
+ * @memberof module:utils
  * @param {Array} raw Array contendo valores a serem
  * convertidos para um Array de objetos do tipo String.
  * @returns Array de objetos do tipo String.
@@ -56,6 +60,8 @@ export const parseArrayToString = (raw, key) => {
  * queries do Prisma. Diferentemente de parseArrayToString(), este
  * método retorna resultados apenas se os valores encontrados em
  * uma pesquisa são idênticos aos pesquisados.
+ * @method parseArrayToStringEquals
+ * @memberof module:utils
  * @param {Array} raw Array contendo valores a serem
  * convertidos para um Array de objetos do tipo String.
  * @returns Array de objetos do tipo String.

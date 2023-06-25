@@ -1,8 +1,10 @@
 import { prisma } from "services/prisma";
 
 /**
- * Lista todas as situações no BD.
- * @returns Objeto JSON contendo o retorno da consulta.
+ * Lista todas as situações de vaga no BD.
+ * @method getBenef
+ * @memberof module:situacoes
+ * @returns {Object} Objeto contendo um Array de resultados.
  */
 export async function getSituacoes() {
   const queryLimit = undefined;
@@ -10,11 +12,13 @@ export async function getSituacoes() {
 }
 
 /**
- * Lista todas as situações baseado no critério de
+ * Lista todas as situações de vaga baseado no critério de
  * pesquisa.
+ * @method getSituacoesByFilter
+ * @memberof module:situacoes
  * @param {Object} filter Array de Objetos contendo os parâmetros
  * de busca.
- * @returns Objeto JSON contendo o retorno da consulta.
+ * @returns {Object} Objeto JSON contendo o retorno da consulta.
  */
 export async function getSituacoesByFilter(filter){
   return await prisma.situacao.findMany({

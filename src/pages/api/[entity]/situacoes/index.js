@@ -1,5 +1,6 @@
 import { getSituacoes, getSituacoesByFilter } from "controller/situacoes";
-import { allowCors } from "services";
+import { allowCors } from "services/apiAllowCors";
+import { exceptionHandler } from "utils/exceptionHandler";
 
 /**
  * Fornece Situações e lista de Situações conforme critérios.
@@ -12,9 +13,11 @@ import { allowCors } from "services";
  * filtragem dependendo das colunas da tabela requisitada pela query.
  * Requer ao menos "condition" (ex. condition=OR) e um objeto de filtro (ex. nome="Fulano")
  * para realizar a pesquisa com o BD.
+ * @method handler
+ * @memberof module:situacoes
  * @param {Object} req HTTP request. Apenas GET é aceito
  * @param {Object} res HTTP response
- * @returns HTTP response como JSON contendo a resposta da query consultada
+ * @returns {Object} HTTP response como JSON contendo a resposta da query consultada.
  */
 async function handler(req, res) {
   if (req.method === "GET") {
@@ -35,38 +38,26 @@ async function handler(req, res) {
         try {
           const query = await getSituacoesByFilter(filter);
           return res.status(200).json({ status: "ok", query });
-        } catch (error) {
+        } catch (e) {
           // SE UM CRITÉRIO FOR INCLUÍDO MAS NÃO A CONDIÇÃO DE PESQUISA, RETORNA ERRO
           if (!condition) {
-            return res.status(400).json({
-              status: 400,
-              message: "ERRO DE API - A chamada requer 'CONDITION'.",
-              error: error.message,
-            });
+            const error = new Error("A chamada requer 'CONDITION'");
+            error.status = 400;
+            return exceptionHandler(error, res);
           }
           // SE A CONSULTA RESULTOU EM ERRO POR QUALQUER OUTRO MOTIVO
-          return res
-            .status(500)
-            .json({
-              status: 500,
-              message: "QUERY ERROR",
-              error: error.message,
-            });
+          return exceptionHandler(e, res);
         }
       }
-    } catch (error) {
+    } catch (e) {
       // SE FOI INSERIDA A CONDIÇÃO, MAS ELA ESTAVA INCORRETA, OU OS CRITÉRIOS DE PESQUISA NÃO BATEM
-      return res
-        .status(405)
-        .json({
-          status: 405,
-          message: "METHOD NOT ALLOWED",
-          error: error.message,
-        });
+      const error = new Error("METHOD NOT ALLOWED");
+      error.status = 405;
+      return exceptionHandler(error, res);
     }
   } else {
     // SE FOI FEITO OUTRO MÉTODO ALÉM DE GET
-    return res.status(403).json({ status: 403, message: "METHOD NOT ALLOWED" });
+    return exceptionHandler(null, res);
   }
 }
 

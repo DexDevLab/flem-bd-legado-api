@@ -4,9 +4,7 @@
     "includePattern": ".+\\.js(doc|x)?$",
     "excludePattern": "(node_modules/|docs)"
   },
-
   "plugins": ["plugins/markdown"],
-
   "opts": {
     "encoding": "utf8",
     "readme": "./README.md",
@@ -16,7 +14,7 @@
     "template": "./node_modules/clean-jsdoc-theme",
     "theme_opts": {
       "theme": "light",
-      "title": "API de Banco de Dados Legado FLEM - Documentação",
+      "title": "FLEM BD Legado API - Documentação",
       "menu": [
         {
           "title": "Website",
@@ -33,7 +31,6 @@
           "id": "some-id"
         }
       ],
-
       "meta": [
         {
           "name": "author",
@@ -49,7 +46,7 @@
         }
       ],
       "search": {},
-      "create_style": "nav{background: yellow}",
+      "create_style": "",
       "add_style_path": [
         {
           "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css",
@@ -65,9 +62,7 @@
           "crossorigin": "anonymous"
         }
       ],
-
       "footer": "Made with ☕️ by <a href='https://github.com/frtechdev'>FR Technologies</a>",
-
       "overlay_scrollbar": {
         "options": {}
       },
